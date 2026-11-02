@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gauss-bonnet"
+version = "0.1.0"
+description = "Macroscopic contact angle from segmented 3D images via the Gauss-Bonnet theorem (Sun et al., 2020)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "scikit-image>=0.22",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+gauss-bonnet = "gauss_bonnet.cli:main"
+gauss-bonnet-plot = "gauss_bonnet.plots:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+# fast tests by default; `pytest -m slow` overrides the filter
+addopts = "-ra --strict-markers -m 'not slow'"
+markers = [
+    "slow: long tests on full core images data/*.npy (run: pytest -m slow)",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

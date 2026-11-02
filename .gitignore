@@ -1,0 +1,13 @@
+# large input data and results
+data/*.npy
+results/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.vscode/*
+build/
+dist/
